@@ -105,13 +105,14 @@
 		on(window,'load',init);  //页面初始化
 
 		function init () {
-			//因为节点并不复杂 为了代码更清晰简单 这里就不打算存储节点了  没必要节约那一点性能 而且这只是初始化只执行一次
+			//因为节点并不复杂 为了代码更清晰简单 这里就不打算存储节点了  而且这是考试 代码清晰更为重要 没必要节约那一点性能 
+			//初始化高度
 			$$('#phoneBox').style.height = window.innerHeight + 'px';
 			$$('#page2').style.height = window.innerHeight + 'px';
-			$$('#main').style.height = window.innerHeight - $$('#header').offsetHeight + 'px';  //初始化液面高度
+			//初始化液面高度
+			$$('#main').style.height = window.innerHeight - $$('#header').offsetHeight + 'px';  
 			$$('.newsCon').style.height = window.innerHeight - $$('#header').offsetHeight - $$('.sliderCon').offsetHeight + 'px'; //初始化 新闻栏目的 height
 			
-
 			on($$('.downArrow'),'touchend',function () {  //给顶部箭头绑定事件
 				$$('#page2').style.top = '0%';
 			})
@@ -140,51 +141,97 @@
 		function sliderLoad (json) {   //轮播
 			var data = JSON.parse(json);
 			var slider = $$('.slider');
-			var length = data.length;
-			$$('.slider').style.width = length * 100 + '%';
+			var length = data.length; //初始化轮播length
+			var nowIndex = 0; //轮播当前index
+
+			$$('.slider').style.width = length * 100 + '%';  //初始化轮播宽度
+			
+			slider.timer = setInterval(function(){slide()},3000); //初始化轮播定时器
+
+			$$('.picInfo .desc').innerHTML = data[nowIndex].title;  //初始化title
+
 			var innerIMG = '';
 			for (var i = 0; i < length; i++) {
 				var oLiImg = '<li class="pic"><a href="'+data[i].link+'"><img src="'+data[i].imgURL+'"></a></li>';
 				innerIMG += oLiImg;
 			}
 			slider.innerHTML = innerIMG;
-			for (var i = 0; i < length; i++) { //自动生成小圆圈li 
+			for (var i = 0; i < length; i++) { //自动生成小圆圈 o 
 				var oLi = document.createElement('li');
 				oLi.className = 'o';
 				$$('.oBox').appendChild(oLi);
 			}
-			addClass($$('.o')[0],'select'); //给第一个li增加默认样式
+			addClass($$('.o')[0],'select'); //给第一个o增加默认样式
 			$$('.o')[length - 1].style.marginRight = 0; //给最后一个o 的marginright 设为0
-				var width = $$('.sliderCon').offsetWidth,
-				nowIndex = 0,
-				aO = $$('.o');
-				oLength = aO.length;
-				for (var i = 0; i < oLength ; i++) {
-					aO[i].index = i;
-					aO[i].onclick = function () {
-						nowIndex = this.index;
-						removeSiblingsClass(aO,'select');
-						addClass(aO[this.index],'select');
-						move(slider,{left: -width*this.index + 'px'},300,'easeOut')
-					}
+			var width = $$('.sliderCon').offsetWidth;
+			//生成完小圆圈后获取所有小圆圈节点
+			var aO = $$('.o');  //小圆圈数组
+			var oLength = aO.length; //小圆圈数组的length
+			for (var i = 0; i < oLength ; i++) {
+				aO[i].index = i;
+				aO[i].onclick = function () {
+					nowIndex = this.index;
+					removeSiblingsClass(aO,'select');
+					addClass(aO[this.index],'select');
+					move(slider,{left: -width*this.index + 'px'},300,'easeOut')
 				}
-				// on(slider,'touchstart',function(e) {
-				// 	this.x = e.touches[0].clientX;
-				// 	console.log(this.x);
-				// 	if (this.timer) {
-				// 		clearInterval(this.timer);
-				// 	}
-				// 	on(this,'touchend',function(){
-				// 			console.log('end')
-				// 			this.timer = setInterval(function(){slide()},3000)
-				// 	})
-				// })
-				// on(slider,'touchmove',function(e) {
-				// 	var x_ = this.x;
-				// })
+			}
+			//规定手指滑动超过这个值 才会滑动轮播图
+			var maxDistance = 120;
+			//给轮播增加一个可以 手指按住时轮播图静止 手指滑动式滑动轮播图滑动的事件
+			on(slider,'touchstart',function(e) {
+				this.originL = this.offsetLeft;
+				this.x = e.touches[0].clientX;
+				if (this.timer) {
+					clearInterval(this.timer);
+				}
+			})
+
+			on(slider,'touchmove',function(e) {
+				this.moveX = e.touches[0].clientX;
+				var x_ = this.moveX - this.x;
 				
-			slider.timer = setInterval(function(){slide()},3000);
-			$$('.picInfo .desc').innerHTML = data[nowIndex].title;  //初始化title
+				this.style.left = this.originL + (x_ * 4/5)+ 'px';						
+				// easeSlide()
+			})
+
+			on(slider,'touchend',function(){
+					var movedX = this.moveX - this.x;
+					console.log('end')
+					//判断手指滑动结束后轮播是否应该滑动
+					if (Math.abs(movedX) > maxDistance) {
+						if (movedX < 0) {
+							console.log(nowIndex);
+							slide();
+						}else if (movedX > 0) {
+							console.log(nowIndex);
+							sliderLeft();
+						}
+					}else {  //如果手指没有滑动到指定的距离 返回到当前轮播
+						move(slider,{left: -width*nowIndex + 'px'},300,'easeOut')
+					}
+					
+					//触摸结束后加入定时器
+					if (this.timer) {
+						clearInterval(this.timer);
+					}
+					this.timer = setInterval(function(){slide()},3000)
+				});
+				
+			//轮播向左滑动
+			function sliderLeft () {
+				if (nowIndex === 0) {
+					nowIndex = length - 1;
+				}else {
+					nowIndex --;
+				};
+				$$('.picInfo .desc').innerHTML = data[nowIndex].title;
+				removeSiblingsClass(aO,'select');
+				addClass(aO[nowIndex],'select');
+				move(slider,{left: -width*nowIndex + 'px'},300,'easeOut')
+			}
+
+			//轮播向右滑动
 			function slide () {
 				if (nowIndex === length - 1) {
 					nowIndex = 0;
@@ -226,10 +273,8 @@
 
 		function tabsLoad (json) {
 			var data = JSON.parse(json);
-			console.log(data.added);
 			var addLength = data.added.length;
 			var avaliableLength = data.avaliable.length;
-			console.log(addLength);
 			//增加added 标签
 			for (var i = 0; i < addLength; i++) {
 				appendAddedTabs(data.added[i].id,data.added[i].name)
@@ -238,7 +283,6 @@
 			$$('.all-tab').style.height = window.innerHeight - $$('#page2 .header').offsetHeight - $$('#page2 .user-tab').offsetHeight - $$('#page2 .block').offsetHeight + 'px'; 
 
 			for (var i = 0; i < avaliableLength; i++) {
-				console.log(data.avaliable[i].name);
 				var oDiv = document.createElement('div');
 				oDiv.className = 'tab';
 				oDiv.innerHTML = data.avaliable[i].name;
@@ -261,7 +305,6 @@
 		function appendAddedTabs (index,content) {
 			var num = index + 1 //为了方便计算 是否换行
 			var userTab = $$('.user-tab');
-			console.log(num);
 			if (num % 4 === 1) {
 				var oUl = document.createElement('ul');
 				var oLi = document.createElement('li');
