@@ -270,8 +270,9 @@
 			}
 			$$('.newsCon').innerHTML = newStr;
 		};
-
+		
 		function tabsLoad (json) {
+			var isRemoveMode = false;
 			var data = JSON.parse(json);
 			var addLength = data.added.length;
 			var avaliableLength = data.avaliable.length;
@@ -296,11 +297,51 @@
 						appendAddedTabs (id,content);
 						$$('.all-tab').style.height = window.innerHeight - $$('#page2 .header').offsetHeight - $$('#page2 .user-tab').offsetHeight - $$('#page2 .block').offsetHeight + 'px'; 
 					},220)
-
-					
 				})
 				$$('.all-tab').appendChild(oDiv);
 			}
+			//排列删除功能
+			on($$('.tab-method')[1],'click',function(){
+			var li = $$('.user-tab li');
+			var l = $$('.user-tab li').length;
+				if (!isRemoveMode) {
+					isRemoveMode = true;
+					console.log(l);
+					for (var i = 0; i < l; i++) {
+						if (i%3 === 0) {
+							addClass(li[i],'shake')
+						}else if (i%3 === 1) {
+							addClass(li[i],'shake2')
+						}else if (i%3 === 2) {
+							addClass(li[i],'shake3')
+						};
+						li[i].onclick = function () {
+							this.className = '';
+							addClass(this,'remove');
+							var This = this;
+							setTimeout(function(){
+								This.parentNode.removeChild(This);
+								var l = $$('.user-tab li').length;
+								var aLi = $$('.user-tab li');
+								$$('.user-tab').innerHTML = '';
+								for (var i = 0; i < l; i++) {
+									aLi[i].content = aLi[i].innerHTML;
+									appendAddedTabs(i,aLi[i].content);
+								}
+								isRemoveMode = false;
+							},200)
+						}
+					}
+				}else {
+					isRemoveMode = false;
+					for (var i = 0; i < l; i++) {
+						li[i].className = '';
+					}
+				}
+			})
+
+
+
 
 		}
 
@@ -323,21 +364,7 @@
 				oLi.innerHTML = content;
 				aUl[aUl.length - 1].appendChild(oLi);
 			}
-			
 		}
-
-
-
-
-
-
-
-
-
-
-
-
-
 	})()
 
 </script>

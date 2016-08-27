@@ -265,24 +265,22 @@ section.newsCon .newBox .r .desc {
 }
 #page2 ul.headerUl {
 	padding: 0 20/64rem;
-	.flexBtween;
 }
 #page2 ul li.tab-method {
 	display: inline-block;
- 	width: 108/64rem;
+ 	width: 135/64rem;
  	height: 72/64rem;
- 	Flex:1;
  	.flex;
  	.flexCenter;
  	font-size: 26/64rem;
 }
 #page2 ul li.tab-method:nth-child(1) {
 	color: #aeaeae;
-	.flexLeft;
+	float: left;
 }
 #page2 ul li.tab-method:nth-child(2) {
 	color: #c30015;
-	.flexRight;
+	float: right;
 }
 #page2 .arrowUp {
 	position: absolute;
@@ -311,6 +309,7 @@ section.newsCon .newBox .r .desc {
 	.flex;
 }
 #page2 section.user-tab ul li {
+	position: relative;
 	display: inline-block;
 	width: 130/64rem;
 	height: 28/64rem;
@@ -318,6 +317,12 @@ section.newsCon .newBox .r .desc {
 	align-self: center;
 	.flexCenter;
 	font-size: 26/64rem; 
+	transition: .2s all linear;
+}
+#page2 section.user-tab ul li.remove {
+	top: -20/64rem;
+	left: 20/64rem;
+	opacity: 0;
 }
 #page2 section.user-tab ul li.highlight {
 	color: #c30114;
@@ -362,9 +367,40 @@ section.newsCon .newBox .r .desc {
 	.flexCenter;
 	border-radius: 2/64rem;
 	transition: .2s all ease;
-	background: #fff;
+	background: #f8f8f8;
 }
 #page2 section.all-tab .tab.remove {
 	opacity: 0;
 	top: -28/64rem;
+}
+.shake {
+	animation-name: shake;
+	animation-iteration-count: infinite;
+	animation-duration: 0.25s
+}
+.shake2 {
+	animation-name: shake2;
+	animation-iteration-count: infinite;
+	animation-duration: 0.25s
+}
+.shake3 {
+	animation-name: shake3;
+	animation-iteration-count: infinite;
+	animation-duration: 0.4s
+}
+@keyframes shake {
+	0%{transform: rotate(5deg);}
+	50%{transform: rotate(-5deg);}
+	100%{transform: rotate(5deg);}
+}
+@keyframes shake2 {
+	0%{transform: rotate(-5deg);}
+	50%{transform: rotate(5deg);}
+	100%{transform: rotate(-5deg);}
+}
+@keyframes shake3 {
+	0%{transform: rotate(0deg);}
+	33%{transform: rotate(5deg);}
+	66%{transform: rotate(-5deg);}
+	100%{transform: rotate(0deg);}
 }

@@ -253,14 +253,11 @@ section.newsCon .newBox .r .desc {
 }
 #page2 ul.headerUl {
   padding: 0 0.3125rem;
-  justify-content: space-between;
-  display: -webkit-flex;
 }
 #page2 ul li.tab-method {
   display: inline-block;
-  width: 1.6875rem;
+  width: 2.109375rem;
   height: 1.125rem;
-  Flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -269,13 +266,11 @@ section.newsCon .newBox .r .desc {
 }
 #page2 ul li.tab-method:nth-child(1) {
   color: #aeaeae;
-  justify-content: flex-start;
-  display: -webkit-flex;
+  float: left;
 }
 #page2 ul li.tab-method:nth-child(2) {
   color: #c30015;
-  justify-content: flex-end;
-  display: -webkit-flex;
+  float: right;
 }
 #page2 .arrowUp {
   position: absolute;
@@ -307,6 +302,7 @@ section.newsCon .newBox .r .desc {
   display: flex;
 }
 #page2 section.user-tab ul li {
+  position: relative;
   display: inline-block;
   width: 2.03125rem;
   height: 0.4375rem;
@@ -316,6 +312,12 @@ section.newsCon .newBox .r .desc {
   align-items: center;
   display: -webkit-flex;
   font-size: 0.40625rem;
+  transition: .2s all linear;
+}
+#page2 section.user-tab ul li.remove {
+  top: -0.3125rem;
+  left: 0.3125rem;
+  opacity: 0;
 }
 #page2 section.user-tab ul li.highlight {
   color: #c30114;
@@ -363,9 +365,60 @@ section.newsCon .newBox .r .desc {
   display: -webkit-flex;
   border-radius: 0.03125rem;
   transition: .2s all ease;
-  background: #fff;
+  background: #f8f8f8;
 }
 #page2 section.all-tab .tab.remove {
   opacity: 0;
   top: -0.4375rem;
+}
+.shake {
+  animation-name: shake;
+  animation-iteration-count: infinite;
+  animation-duration: 0.25s;
+}
+.shake2 {
+  animation-name: shake2;
+  animation-iteration-count: infinite;
+  animation-duration: 0.25s;
+}
+.shake3 {
+  animation-name: shake3;
+  animation-iteration-count: infinite;
+  animation-duration: 0.4s;
+}
+@keyframes shake {
+  0% {
+    transform: rotate(5deg);
+  }
+  50% {
+    transform: rotate(-5deg);
+  }
+  100% {
+    transform: rotate(5deg);
+  }
+}
+@keyframes shake2 {
+  0% {
+    transform: rotate(-5deg);
+  }
+  50% {
+    transform: rotate(5deg);
+  }
+  100% {
+    transform: rotate(-5deg);
+  }
+}
+@keyframes shake3 {
+  0% {
+    transform: rotate(0deg);
+  }
+  33% {
+    transform: rotate(5deg);
+  }
+  66% {
+    transform: rotate(-5deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
 }
