@@ -282,21 +282,25 @@
 			}
 			//usertab 载入完成后 给allTabs 定义高度
 			$$('.all-tab').style.height = window.innerHeight - $$('#page2 .header').offsetHeight - $$('#page2 .user-tab').offsetHeight - $$('#page2 .block').offsetHeight + 'px'; 
-
+			var isTabsBug = true;
 			for (var i = 0; i < avaliableLength; i++) {
 				var oDiv = document.createElement('div');
 				oDiv.className = 'tab';
 				oDiv.innerHTML = data.avaliable[i].name;
 				on(oDiv,'click',function (){
-					var id = $$('.user-tab li').length;
-					var content = this.innerHTML;
-					addClass(this,'remove');
-					var This = this;
-					setTimeout(function(){
-						This.parentNode.removeChild(This);
-						appendAddedTabs (id,content);
-						$$('.all-tab').style.height = window.innerHeight - $$('#page2 .header').offsetHeight - $$('#page2 .user-tab').offsetHeight - $$('#page2 .block').offsetHeight + 'px'; 
-					},220)
+					if (isTabsBug) {
+						var id = $$('.user-tab li').length;
+						var content = this.innerHTML;
+						addClass(this,'remove');
+						var This = this;
+						isTabsBug = false;
+						setTimeout(function(){
+							This.parentNode.removeChild(This);
+							appendAddedTabs (id,content);
+							$$('.all-tab').style.height = window.innerHeight - $$('#page2 .header').offsetHeight - $$('#page2 .user-tab').offsetHeight - $$('#page2 .block').offsetHeight + 'px'; 
+							isTabsBug = true;
+						},220)
+					}
 				})
 				$$('.all-tab').appendChild(oDiv);
 			}
@@ -318,15 +322,35 @@
 						li[i].onclick = function () {
 							this.className = '';
 							addClass(this,'remove');
+							var ThisContent = this.innerHTML;
 							var This = this;
 							setTimeout(function(){
 								This.parentNode.removeChild(This);
+								var oDiv = document.createElement('div');
+								oDiv.innerHTML = ThisContent;
+								oDiv.className = 'tab';
+								on(oDiv,'click',function(){
+									if (isTabsBug) {
+										var id = $$('.user-tab li').length;
+										var content = this.innerHTML;
+										addClass(this,'remove');
+										var This = this;
+										isTabsBug = false;
+										setTimeout(function(){
+											This.parentNode.removeChild(This);
+											appendAddedTabs (id,content);
+											$$('.all-tab').style.height = window.innerHeight - $$('#page2 .header').offsetHeight - $$('#page2 .user-tab').offsetHeight - $$('#page2 .block').offsetHeight + 'px'; 
+											isTabsBug = true;
+										},220)
+									}
+								})
+								$$('.all-tab').appendChild(oDiv);
 								var l = $$('.user-tab li').length;
 								var aLi = $$('.user-tab li');
 								$$('.user-tab').innerHTML = '';
 								for (var i = 0; i < l; i++) {
 									aLi[i].content = aLi[i].innerHTML;
-									appendAddedTabs(i,aLi[i].content);
+									appendAddedTabs(i ,aLi[i].content);
 								}
 								isRemoveMode = false;
 							},200)
