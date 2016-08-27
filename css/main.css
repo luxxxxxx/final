@@ -349,6 +349,8 @@ section.newsCon .newBox .r .desc {
   overflow-y: scroll;
 }
 #page2 section.all-tab .tab {
+  position: relative;
+  top: 0;
   align-items: flex-start;
   width: 2.1875rem;
   height: 1.0625rem;
@@ -361,4 +363,9 @@ section.newsCon .newBox .r .desc {
   display: -webkit-flex;
   border-radius: 0.03125rem;
   transition: .2s all ease;
+  background: #fff;
+}
+#page2 section.all-tab .tab.remove {
+  opacity: 0;
+  top: -0.4375rem;
 }

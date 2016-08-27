@@ -289,9 +289,15 @@
 				on(oDiv,'click',function (){
 					var id = $$('.user-tab li').length;
 					var content = this.innerHTML;
-					appendAddedTabs (id,content);
-					this.parentNode.removeChild(this);
-					$$('.all-tab').style.height = window.innerHeight - $$('#page2 .header').offsetHeight - $$('#page2 .user-tab').offsetHeight - $$('#page2 .block').offsetHeight + 'px'; 
+					addClass(this,'remove');
+					var This = this;
+					setTimeout(function(){
+						This.parentNode.removeChild(This);
+						appendAddedTabs (id,content);
+						$$('.all-tab').style.height = window.innerHeight - $$('#page2 .header').offsetHeight - $$('#page2 .user-tab').offsetHeight - $$('#page2 .block').offsetHeight + 'px'; 
+					},220)
+
+					
 				})
 				$$('.all-tab').appendChild(oDiv);
 			}
