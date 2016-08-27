@@ -30,9 +30,7 @@
 			<section id="main">
 				<section class="sliderCon">
 					<ul class="slider clearfix">
-					<!-- 	<li class="pic"><a href="http://hgtcgmslw.ml/uadrqdbtzs"><img src="http://dummyimage.com/600x400/00405d/FFF&text=新构存金团"></a></li>
-						<li class="pic"></li>
-						<li class="pic"></li> -->
+
 					</ul>
 					<div class="infoBox clearfix">
 						<div class="picInfo">
@@ -46,7 +44,7 @@
 					</div>
 				</section>
 				<section class="newsCon">
-					<!-- <div class="newBox clearfix"><div class="l"><img src="xxx"></div><div class="r"><p class="title">30脸谱阅后即焚应用排名下跌</p><p class="desc">23阅后即焚服务一度跻身App Store前50名免费应用排行榜</p><div class="icon">88跟帖 <span class="tab">LIVE</span></div></div></div> -->
+
 				</section>
 			</section>
 		</div>
@@ -59,37 +57,13 @@
 				<div class="arrowUp"><img src="./img/arrowDown.png"></div>					
 			</header>
 			<section class="user-tab">
-				<!-- <ul>
-					<li class="highlight">头条</li>
-					<li>娱乐</li>
-					<li>体育</li>
-					<li>财经</li>
-				</ul>
-				<ul>
-					<li>科技</li>
-					<li>汽车</li>
-					<li>北京</li>
-					<li>军事</li>
-				</ul>
-				<ul>
-					<li>房产</li>
-					<li>数码</li>
-					<li>手机</li>
-					<li>移动互联</li>
-				</ul> -->
+	
 			</section>
 			<div class="block">
 				<span>点击添加更多栏目</span>
 			</div>
 			<section class="all-tab">
-				<!-- <div class="tab">博客</div>
-				<div class="tab">推荐</div>
-				<div class="tab">论坛</div>
-				<div class="tab">聚合阅读</div>
-				<div class="tab">社会</div>
-				<div class="tab">电影</div>
-				<div class="tab">彩票</div>
-				<div class="tab">NBA</div> -->
+
 			</section>
 		</div>
 	</div>	
@@ -103,6 +77,32 @@
 	(function () {
 
 		on(window,'load',init);  //页面初始化
+
+		//给头部增加一个 可以手指按住移动的效果   
+		on($$('#page1 nav') , 'touchstart' , function (e) {
+			this.x = e.touches[0].clientX;
+			this.originL = this.offsetLeft;
+		})
+		on($$('#page1 nav') , 'touchmove' , function (e) {
+			this.movex = e.touches[0].clientX;
+			var x_ = this.movex - this.x;
+			if (Math.abs(this.offsetLeft) > 12) {
+				x_  =  x_ /3 
+			}
+			this.style.left = this.originL + x_ + 'px';
+		})
+		 // fang shou hou tanxing shou suo
+		on($$('#page1 nav') , 'touchend' , function (e) {
+			addClass(this,'elasticBack');
+			setTimeout(function(){
+				removeClass(this,'elasticBack');
+			},200)
+			if (this.offsetLeft < -6) {
+				this.style.left = '-6px';
+			}else if (this.offsetLeft > 12) {
+				this.style.left = '6px'
+			}
+		})
 
 		function init () {
 			//因为节点并不复杂 为了代码更清晰简单 这里就不打算存储节点了  而且这是考试 代码清晰更为重要 没必要节约那一点性能 
