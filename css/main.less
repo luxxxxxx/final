@@ -211,7 +211,7 @@ section.newsCon .newBox .r {
 section.newsCon .newBox .r .icon {
 	position: absolute;
 	right: 0;
-	bottom: -8/64rem;
+	bottom: -16/64rem;
 	font-size: 23/64rem;
 	color: rgba(198,198,198,1);
 
@@ -230,11 +230,15 @@ section.newsCon .newBox .r .title {
 	margin-top: 6/64rem;
 	font-size: 30/64rem;
 	color: #000;
-	overflow-x: visible;
+	overflow: hidden;
 	text-overflow: ellipsis;
-	white-space: normal;
+	white-space: nowrap;
 }
 section.newsCon .newBox .r .desc {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	margin-top: 8/64rem;
+	white-space: nowrap;
 	font-size: 24/64rem;
 	line-height: 29/64rem;
 	color: rgba(198,198,198,1);
@@ -296,6 +300,8 @@ section.newsCon .newBox .r .desc {
 }
 #page2 section.user-tab {
 	width: 10rem;
+	max-height: 396/36rem;
+	overflow-y: scroll;
 	box-sizing: border-box;
 	padding: 26/64rem 38/64rem;
 }
@@ -340,6 +346,7 @@ section.newsCon .newBox .r .desc {
 	flex-wrap: wrap;
 	align-content: flex-start; 
 	box-sizing: border-box;
+	overflow-y: scroll;
 }
 #page2 section.all-tab .tab {
 	align-items: flex-start;

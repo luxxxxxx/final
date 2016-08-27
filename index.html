@@ -110,8 +110,8 @@
 			$$('#phoneBox').style.height = window.innerHeight + 'px';
 			$$('#page2').style.height = window.innerHeight + 'px';
 			//初始化液面高度
-			$$('#main').style.height = window.innerHeight - $$('#header').offsetHeight + 'px';  
-			$$('.newsCon').style.height = window.innerHeight - $$('#header').offsetHeight - $$('.sliderCon').offsetHeight + 'px'; //初始化 新闻栏目的 height
+			$$('#main').style.height = window.innerHeight - $$('#page1 .header').offsetHeight + 'px';  
+			$$('section.newsCon').style.height = window.innerHeight - $$('#page1 .header').offsetHeight - $$('.sliderCon').offsetHeight + 'px'; //初始化 新闻栏目的 height
 			
 			on($$('.downArrow'),'touchend',function () {  //给顶部箭头绑定事件
 				$$('#page2').style.top = '0%';
