@@ -59,7 +59,7 @@
 				<div class="arrowUp"><img src="./img/arrowDown.png"></div>					
 			</header>
 			<section class="user-tab">
-				<ul>
+				<!-- <ul>
 					<li class="highlight">头条</li>
 					<li>娱乐</li>
 					<li>体育</li>
@@ -76,20 +76,20 @@
 					<li>数码</li>
 					<li>手机</li>
 					<li>移动互联</li>
-				</ul>
+				</ul> -->
 			</section>
 			<div class="block">
 				<span>点击添加更多栏目</span>
 			</div>
 			<section class="all-tab">
-				<div class="tab">博客</div>
+				<!-- <div class="tab">博客</div>
 				<div class="tab">推荐</div>
 				<div class="tab">论坛</div>
 				<div class="tab">聚合阅读</div>
 				<div class="tab">社会</div>
 				<div class="tab">电影</div>
 				<div class="tab">彩票</div>
-				<div class="tab">NBA</div>
+				<div class="tab">NBA</div> -->
 			</section>
 		</div>
 	</div>	
@@ -110,12 +110,12 @@
 			$$('#page2').style.height = window.innerHeight + 'px';
 			$$('#main').style.height = window.innerHeight - $$('#header').offsetHeight + 'px';  //初始化液面高度
 			$$('.newsCon').style.height = window.innerHeight - $$('#header').offsetHeight - $$('.sliderCon').offsetHeight + 'px'; //初始化 新闻栏目的 height
-			$$('.all-tab').style.height = window.innerHeight - $$('#page2 .header').offsetHeight - $$('#page2 .user-tab').offsetHeight - $$('#page2 .block').offsetHeight + 'px'; 
-			//ajax...
-			on($$('.downArrow'),'touchend',function () {
+			
+
+			on($$('.downArrow'),'touchend',function () {  //给顶部箭头绑定事件
 				$$('#page2').style.top = '0%';
 			})
-			on($$('.arrowUp'),'touchend',function () {
+			on($$('.arrowUp'),'touchend',function () { //给顶部箭头绑定事件
 				$$('#page2').style.top = '-100%';
 			})
 			//载入轮播
@@ -129,6 +129,12 @@
 				'url' : "/news?num=2",
 				'success' : newsLoad
 			});
+
+			//载入标签页
+			ajax ({
+				'url' : '/tags',
+				'success' : tabsLoad
+			})
 		}
 
 		function sliderLoad (json) {   //轮播
@@ -192,7 +198,7 @@
 			}
 		}
 
-
+		//封装了一个类似于 removeSiblings  的 class 方法
 		function removeSiblingsClass (objArry,classN) {
 			var l = objArry.length;
 			for (var i = 0; i < l ; i++) {
@@ -203,7 +209,6 @@
 
 
 		function newsLoad (json) {
-			console.log(json);
 			var data = JSON.parse(json);
 			var length = data.length;
 			var newStr = '';
@@ -217,7 +222,71 @@
 				newStr += news;
 			}
 			$$('.newsCon').innerHTML = newStr;
+		};
+
+		function tabsLoad (json) {
+			var data = JSON.parse(json);
+			console.log(data.added);
+			var addLength = data.added.length;
+			var avaliableLength = data.avaliable.length;
+			console.log(addLength);
+			//增加added 标签
+			for (var i = 0; i < addLength; i++) {
+				appendAddedTabs(data.added[i].id,data.added[i].name)
+			}
+			//usertab 载入完成后 给allTabs 定义高度
+			$$('.all-tab').style.height = window.innerHeight - $$('#page2 .header').offsetHeight - $$('#page2 .user-tab').offsetHeight - $$('#page2 .block').offsetHeight + 'px'; 
+
+			for (var i = 0; i < avaliableLength; i++) {
+				console.log(data.avaliable[i].name);
+				var oDiv = document.createElement('div');
+				oDiv.className = 'tab';
+				oDiv.innerHTML = data.avaliable[i].name;
+				on(oDiv,'click',function (){
+					var id = $$('.user-tab li').length;
+					var content = this.innerHTML;
+					appendAddedTabs (id,content);
+					this.parentNode.removeChild(this);
+					$$('.all-tab').style.height = window.innerHeight - $$('#page2 .header').offsetHeight - $$('#page2 .user-tab').offsetHeight - $$('#page2 .block').offsetHeight + 'px'; 
+				})
+				$$('.all-tab').appendChild(oDiv);
+			}
+
 		}
+
+
+
+
+		//封装一个 给上面 added tab 增加tab 的 函数
+		function appendAddedTabs (index,content) {
+			var num = index + 1 //为了方便计算 是否换行
+			var userTab = $$('.user-tab');
+			console.log(num);
+			if (num % 4 === 1) {
+				var oUl = document.createElement('ul');
+				var oLi = document.createElement('li');
+				oLi.innerHTML = content;
+				oUl.appendChild(oLi);
+				userTab.appendChild(oUl);
+			} else {
+				var aUl = userTab.querySelectorAll('ul');
+				var oLi = document.createElement('li');
+				oLi.innerHTML = content;
+				aUl[aUl.length - 1].appendChild(oLi);
+			}
+			
+		}
+
+
+
+
+
+
+
+
+
+
+
 
 
 	})()

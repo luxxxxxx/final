@@ -242,11 +242,11 @@ section.newsCon .newBox .r .desc {
   width: 8.6875rem;
   box-sizing: border-box;
   height: 1.125rem;
-  justify-content: space-between;
-  display: -webkit-flex;
 }
 #page2 ul.headerUl {
   padding: 0 0.3125rem;
+  justify-content: space-between;
+  display: -webkit-flex;
 }
 #page2 ul li.tab-method {
   display: inline-block;
@@ -330,11 +330,12 @@ section.newsCon .newBox .r .desc {
 }
 #page2 section.all-tab {
   width: 10rem;
-  padding: 0.5rem 0.1875rem 0;
+  padding: 0.5rem 0.125rem 0;
   display: -webkit-flex;
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
+  box-sizing: border-box;
 }
 #page2 section.all-tab .tab {
   align-items: flex-start;
