@@ -197,9 +197,19 @@ section.newsCon .newBox .r {
 section.newsCon .newBox .r .icon {
   position: absolute;
   right: 0;
-  bottom: 0;
+  bottom: -0.125rem;
   font-size: 0.359375rem;
   color: #c6c6c6;
+}
+section.newsCon .newBox .r .tab {
+  display: inline-block;
+  width: 0.84375rem;
+  height: 0.4375rem;
+  color: #fff;
+  font-size: 0.25rem;
+  background: red;
+  text-align: center;
+  line-height: 0.4375rem;
 }
 section.newsCon .newBox .r .title {
   margin-top: 0.09375rem;
@@ -210,8 +220,8 @@ section.newsCon .newBox .r .title {
   white-space: normal;
 }
 section.newsCon .newBox .r .desc {
-  margin-top: 0.28125rem;
   font-size: 0.375rem;
+  line-height: 0.453125rem;
   color: #c6c6c6;
 }
 .page {

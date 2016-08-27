@@ -46,76 +46,7 @@
 					</div>
 				</section>
 				<section class="newsCon">
-					<div class="newBox clearfix">
-						<div class="l">
-							<img src="xxx">
-						</div>
-						<div class="r">
-							<p class="title">30脸谱阅后即焚应用排名下跌</p>
-							<p class="desc">23阅后即焚服务一度跻身App Store前50名免费应用排行榜</p>
-							<div class="icon">88跟帖</div>
-						</div>
-					</div>
-					<div class="newBox clearfix">
-						<div class="l">
-							<img src="xxx">
-						</div>
-						<div class="r">
-							<p class="title">30脸谱阅后即焚应用排名下跌</p>
-							<p class="desc">23阅后即焚服务一度跻身App Store前50名免费应用排行榜</p>
-							<div class="icon">88跟帖</div>
-						</div>
-					</div>
-					<div class="newBox clearfix">
-						<div class="l">
-							<img src="xxx">
-						</div>
-						<div class="r">
-							<p class="title">30脸谱阅后即焚应用排名下跌</p>
-							<p class="desc">23阅后即焚服务一度跻身App Store前50名免费应用排行榜</p>
-							<div class="icon">88跟帖</div>
-						</div>
-					</div>
-					<div class="newBox clearfix">
-						<div class="l">
-							<img src="xxx">
-						</div>
-						<div class="r">
-							<p class="title">30脸谱阅后即焚应用排名下跌</p>
-							<p class="desc">23阅后即焚服务一度跻身App Store前50名免费应用排行榜</p>
-							<div class="icon">88跟帖</div>
-						</div>
-					</div>
-					<div class="newBox clearfix">
-						<div class="l">
-							<img src="xxx">
-						</div>
-						<div class="r">
-							<p class="title">30脸谱阅后即焚应用排名下跌</p>
-							<p class="desc">23阅后即焚服务一度跻身App Store前50名免费应用排行榜</p>
-							<div class="icon">88跟帖</div>
-						</div>
-					</div>
-					<div class="newBox clearfix">
-						<div class="l">
-							<img src="xxx">
-						</div>
-						<div class="r">
-							<p class="title">30脸谱阅后即焚应用排名下跌</p>
-							<p class="desc">23阅后即焚服务一度跻身App Store前50名免费应用排行榜</p>
-							<div class="icon">88跟帖</div>
-						</div>
-					</div>
-					<div class="newBox clearfix">
-						<div class="l">
-							<img src="xxx">
-						</div>
-						<div class="r">
-							<p class="title">30脸谱阅后即焚应用排名下跌</p>
-							<p class="desc">23阅后即焚服务一度跻身App Store前50名免费应用排行榜</p>
-							<div class="icon">88跟帖</div>
-						</div>
-					</div>
+					<!-- <div class="newBox clearfix"><div class="l"><img src="xxx"></div><div class="r"><p class="title">30脸谱阅后即焚应用排名下跌</p><p class="desc">23阅后即焚服务一度跻身App Store前50名免费应用排行榜</p><div class="icon">88跟帖 <span class="tab">LIVE</span></div></div></div> -->
 				</section>
 			</section>
 		</div>
@@ -275,6 +206,17 @@
 			console.log(json);
 			var data = JSON.parse(json);
 			var length = data.length;
+			var newStr = '';
+			for (var i = 0; i < length; i++) {
+				if (data[i].type === null) {
+					tab = '';
+				}else {
+					tab = '<span class="tab" style = "background:'+data[i].typeColor+'">'+ data[i].type +'</span>';
+				}
+				var news = '<div class="newBox clearfix"><a href = "'+data[i].link+'"><div class="l"><img src="'+data[i].imgURL+'"></div><div class="r"><p class="title">'+data[i].title+'</p><p class="desc">'+data[i].description+'</p><div class="icon">'+data[i].post+'跟帖 '+tab+'</div></div></a></div>';
+				newStr += news;
+			}
+			$$('.newsCon').innerHTML = newStr;
 		}
 
 
