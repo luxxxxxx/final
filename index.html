@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1, user-scalable=0, maximum-scale=1.0, minimum-scale=1.0, width=device-width">
+<head>
+	<title></title>
+	<script type="text/javascript">
+		!function(a,b){function c(){var b=f.getBoundingClientRect().width;b/i>540&&(b=540*i);var c=b/10;f.style.fontSize=c+"px",k.rem=a.rem=c}var d,e=a.document,f=e.documentElement,g=e.querySelector('meta[name="viewport"]'),h=e.querySelector('meta[name="flexible"]'),i=0,j=0,k=b.flexible||(b.flexible={});if(g){console.warn("将根据已有的meta标签来设置缩放比例");var l=g.getAttribute("content").match(/initial\-scale=([\d\.]+)/);l&&(j=parseFloat(l[1]),i=parseInt(1/j))}else if(h){var m=h.getAttribute("content");if(m){var n=m.match(/initial\-dpr=([\d\.]+)/),o=m.match(/maximum\-dpr=([\d\.]+)/);n&&(i=parseFloat(n[1]),j=parseFloat((1/i).toFixed(2))),o&&(i=parseFloat(o[1]),j=parseFloat((1/i).toFixed(2)))}}if(!i&&!j){var p=(a.navigator.appVersion.match(/android/gi),a.navigator.appVersion.match(/iphone/gi)),q=a.devicePixelRatio;i=p?q>=3&&(!i||i>=3)?3:q>=2&&(!i||i>=2)?2:1:1,j=1/i}if(f.setAttribute("data-dpr",i),!g)if(g=e.createElement("meta"),g.setAttribute("name","viewport"),g.setAttribute("content","initial-scale="+j+", maximum-scale="+j+", minimum-scale="+j+", user-scalable=no"),f.firstElementChild)f.firstElementChild.appendChild(g);else{var r=e.createElement("div");r.appendChild(g),e.write(r.innerHTML)}a.addEventListener("resize",function(){clearTimeout(d),d=setTimeout(c,300)},!1),a.addEventListener("pageshow",function(a){a.persisted&&(clearTimeout(d),d=setTimeout(c,300))},!1),"complete"===e.readyState?e.body.style.fontSize=12*i+"px":e.addEventListener("DOMContentLoaded",function(){e.body.style.fontSize=12*i+"px"},!1),c(),k.dpr=a.dpr=i,k.refreshRem=c,k.rem2px=function(a){var b=parseFloat(a)*this.rem;return"string"==typeof a&&a.match(/rem$/)&&(b+="px"),b},k.px2rem=function(a){var b=parseFloat(a)/this.rem;return"string"==typeof a&&a.match(/px$/)&&(b+="rem"),b}}(window,window.lib||(window.lib={}));
+	</script>
+</head>
+<link rel="stylesheet" type="text/css" href="css/reset.css">
+<link rel="stylesheet" type="text/css" href="css/main.css">
+
+<body>
+	<div id="phoneBox">
+		<div id="page1" class="page">
+			<header class="header">
+				<nav>
+					<ul class="clearfix">
+						<li>头条</li>
+						<li>娱乐</li>
+						<li>体育</li>
+						<li>汽车</li>
+						<li>科技</li>
+						<li class="slideBar"></li>
+					</ul>
+				</nav>
+				<div class="downArrow"><img src="./img/arrowDown.png"></div>
+			</header>
+			<section id="main">
+				<section class="sliderCon">
+					<ul class="slider clearfix">
+						<li class="pic"></li>
+						<li class="pic"></li>
+						<li class="pic"></li>
+					</ul>
+					<div class="infoBox clearfix">
+						<div class="picInfo">
+							<a href="##">
+								<span class="icon">图集</span>
+								<span class="desc">脸谱阅后即焚应用排名下跌</span>
+							</a>
+						</div>
+						<div class="oBox clearfix">
+						</div>
+					</div>
+				</section>
+				<section class="newsCon">
+					<div class="newBox clearfix">
+						<div class="l">
+							<img src="xxx">
+						</div>
+						<div class="r">
+							<p class="title">30脸谱阅后即焚应用排名下跌</p>
+							<p class="desc">23阅后即焚服务一度跻身App Store前50名免费应用排行榜</p>
+							<div class="icon">88跟帖</div>
+						</div>
+					</div>
+					<div class="newBox clearfix">
+						<div class="l">
+							<img src="xxx">
+						</div>
+						<div class="r">
+							<p class="title">30脸谱阅后即焚应用排名下跌</p>
+							<p class="desc">23阅后即焚服务一度跻身App Store前50名免费应用排行榜</p>
+							<div class="icon">88跟帖</div>
+						</div>
+					</div>
+					<div class="newBox clearfix">
+						<div class="l">
+							<img src="xxx">
+						</div>
+						<div class="r">
+							<p class="title">30脸谱阅后即焚应用排名下跌</p>
+							<p class="desc">23阅后即焚服务一度跻身App Store前50名免费应用排行榜</p>
+							<div class="icon">88跟帖</div>
+						</div>
+					</div>
+					<div class="newBox clearfix">
+						<div class="l">
+							<img src="xxx">
+						</div>
+						<div class="r">
+							<p class="title">30脸谱阅后即焚应用排名下跌</p>
+							<p class="desc">23阅后即焚服务一度跻身App Store前50名免费应用排行榜</p>
+							<div class="icon">88跟帖</div>
+						</div>
+					</div>
+					<div class="newBox clearfix">
+						<div class="l">
+							<img src="xxx">
+						</div>
+						<div class="r">
+							<p class="title">30脸谱阅后即焚应用排名下跌</p>
+							<p class="desc">23阅后即焚服务一度跻身App Store前50名免费应用排行榜</p>
+							<div class="icon">88跟帖</div>
+						</div>
+					</div>
+					<div class="newBox clearfix">
+						<div class="l">
+							<img src="xxx">
+						</div>
+						<div class="r">
+							<p class="title">30脸谱阅后即焚应用排名下跌</p>
+							<p class="desc">23阅后即焚服务一度跻身App Store前50名免费应用排行榜</p>
+							<div class="icon">88跟帖</div>
+						</div>
+					</div>
+					<div class="newBox clearfix">
+						<div class="l">
+							<img src="xxx">
+						</div>
+						<div class="r">
+							<p class="title">30脸谱阅后即焚应用排名下跌</p>
+							<p class="desc">23阅后即焚服务一度跻身App Store前50名免费应用排行榜</p>
+							<div class="icon">88跟帖</div>
+						</div>
+					</div>
+				</section>
+			</section>
+		</div>
+		<div id="page2" class="page">
+			<header class="header">
+				<ul class="clearfix headerUl">
+					<li class="tab-method">切换栏目</li>
+					<li class="tab-method">排序删除</li>
+				</ul>
+				<div class="arrowUp"><img src="./img/arrowDown.png"></div>					
+			</header>
+			<section class="user-tab">
+				<ul>
+					<li class="highlight">头条</li>
+					<li>娱乐</li>
+					<li>体育</li>
+					<li>财经</li>
+				</ul>
+				<ul>
+					<li>科技</li>
+					<li>汽车</li>
+					<li>北京</li>
+					<li>军事</li>
+				</ul>
+				<ul>
+					<li>房产</li>
+					<li>数码</li>
+					<li>手机</li>
+					<li>移动互联</li>
+				</ul>
+			</section>
+			<div class="block">
+				<span>点击添加更多栏目</span>
+			</div>
+			<section class="all-tab">
+				<div class="tab">博客</div>
+				<div class="tab">推荐</div>
+				<div class="tab">论坛</div>
+				<div class="tab">聚合阅读</div>
+				<div class="tab">社会</div>
+				<div class="tab">电影</div>
+				<div class="tab">彩票</div>
+				<div class="tab">NBA</div>
+			</section>
+		</div>
+	</div>	
+</body>
+</html>
+<script src="https://redrock.cqupt.edu.cn/exam-mock/mock-min.js"></script>
+<script src="https://redrock.cqupt.edu.cn/exam-mock/mock-data.js"></script>
+<script type="text/javascript" src = './js/pack.js'></script>
+<script type="text/javascript">
+// "/news?num=2"   news
+	(function () {
+		// ajax({
+		// 	url: "/sliders",
+		// 	method: "GET",
+		// 	success: sliderLoad;
+			
+		// });
+		on(window,'load',init);  //页面初始化
+
+		function init () {
+			//因为节点并不复杂 为了代码更清晰简单 这里就不打算存储节点了  没必要节约那一点性能 而且这只是初始化只执行一次
+			$$('#phoneBox').style.height = window.innerHeight + 'px';
+			$$('#page2').style.height = window.innerHeight + 'px';
+			$$('#main').style.height = window.innerHeight - $$('#header').offsetHeight + 'px';  //初始化液面高度
+			$$('.newsCon').style.height = window.innerHeight - $$('#header').offsetHeight - $$('.sliderCon').offsetHeight + 'px'; //初始化 新闻栏目的 height
+			$$('.all-tab').style.height = window.innerHeight - $$('#page2 .header').offsetHeight - $$('#page2 .user-tab').offsetHeight - $$('#page2 .block').offsetHeight + 'px'; 
+			//ajax...
+			on($$('.downArrow'),'touchend',function () {
+				$$('#page2').style.top = '0%';
+			})
+			on($$('.arrowUp'),'touchend',function () {
+				$$('#page2').style.top = '-100%';
+			})
+			ajax ({
+				url: "/sliders",
+  				method: "GET"
+  				success : sliderLoad();
+			})
+			//载入轮播
+			// sliderLoad();
+
+			//载入新闻
+			ajax ({
+				url : "/news?num=2",
+				'success' : newsLoad()
+			});
+
+
+		}
+
+		function sliderLoad (json) {   //轮播
+			console.log(json)
+			var length = 3;
+			$$('.slider').style.width = length * 100 + '%';
+			for (var i = 0; i < length; i++) { //自动生成li
+				var oLi = document.createElement('li');
+				oLi.className = 'o';
+				$$('.oBox').appendChild(oLi);
+			}
+			addClass($$('.o')[0],'select'); //给第一个li增加默认样式
+			var slider = $$('.slider'),
+				width = $$('.sliderCon').offsetWidth,
+				nowIndex = 0,
+				aO = $$('.o');
+				oLength = aO.length;
+				for (var i = 0; i < oLength ; i++) {
+					aO[i].index = i;
+					aO[i].onclick = function () {
+						nowIndex = this.index;
+						removeSiblingsClass(aO,'select');
+						addClass(aO[this.index],'select');
+						move(slider,{left: -width*this.index + 'px'},300,'easeOut')
+					}
+				}
+				on(slider,'touchstart',function(e) {
+					this.x = e.touches[0].clientX;
+					console.log(this.x);
+					if (this.timer) {
+						clearInterval(this.timer);
+					}
+					on(this,'touchend',function(){
+							console.log('end')
+							this.timer = setInterval(function(){slide()},3000)
+					})
+				})
+				on(slider,'touchmove',function(e) {
+					var x_ = this.x;
+				})
+				
+			slider.timer = setInterval(function(){slide()},3000);
+
+			function slide () {
+				if (nowIndex === length - 1) {
+					nowIndex = 0;
+				}else {
+					nowIndex ++;
+				}
+				removeSiblingsClass(aO,'select');
+				addClass(aO[nowIndex],'select');
+				move(slider,{left: -width*nowIndex + 'px'},300,'easeOut')
+			}
+		}
+
+
+		function removeSiblingsClass (objArry,classN) {
+			var l = objArry.length;
+			for (var i = 0; i < l ; i++) {
+				removeClass(objArry[i],classN)
+			}
+		}
+
+
+
+		function newsLoad (data) {
+			console.log(data);
+			var l = 4;
+
+		}
+
+
+	})()
+</script>

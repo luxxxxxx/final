@@ -1,0 +1,342 @@
+.flex {
+	display: -webkit-flex;
+	display: flex;
+}
+.flexCenter {
+	justify-content: center;
+	align-items: center;
+	display: -webkit-flex;
+}
+.flexLeft {
+	justify-content: flex-start;
+	display: -webkit-flex;
+}
+.flexRight {
+	justify-content: flex-end;
+	display: -webkit-flex
+}
+//两边 对其 效果如同  /**       **/
+.flexBtween {  
+	justify-content: space-between;
+	display: -webkit-flex;
+}
+.transition(@t:0.1s){
+	transition: @t all linear;
+	-webkit-transition: @t all linear;
+	-moz-transition: @t all linear;
+	-o-transition: @t all linear;
+}
+.radius(@r:6px) {
+	border-radius: 6px;
+}
+
+//1rem = 64px
+//header = 72px
+#phoneBox {
+	position: relative;
+	overflow: hidden;
+}
+.header {
+	position: relative;
+	width: 10rem;
+	height: 72/64rem;
+	background-color: rgba(230,230,230,1);
+	.flex();
+}
+.header nav {
+	padding-left: 10/64rem;
+	position: relative;
+	width: 100%;
+	height: 72/64rem;
+}
+.header nav ul li {
+	float: left;
+	display: block;
+	width: 68/64rem;
+	font-size: 30/64rem;
+	color: #000;
+	text-align: center;
+	line-height: 72/64rem;
+	margin-right: 50/64rem;
+}
+.header nav ul li:nth-child(5) {
+	margin-right: 0;
+}
+.header nav ul li.slideBar {
+	position: absolute;
+	bottom: 0;
+	width: 68/64rem;
+	height: 6/64rem;
+	background-color: rgba(190,0,1,1);
+}
+.header .downArrow {
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 87/64rem;
+	height: 72/64rem;
+	box-shadow: -2px 0 11px rgba(0,0,0,.1);
+	.flexCenter;
+
+}
+.header .downArrow img {
+	width: 37/64rem;
+	height: 21/64rem;
+}
+
+section.sliderCon {
+	position: relative;
+	width: 10rem;
+	height: 370/64rem;
+	overflow: hidden;
+}
+section.sliderCon .infoBox {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 52/64rem;
+	padding-left: 25/64rem;
+	padding-right: 14/64rem;
+	box-sizing: border-box;
+	background-color: rgba(228,222,217,.6);
+}
+section.sliderCon .infoBox .picInfo {
+	float: left;
+	height: 100%;
+	max-width: 7rem;
+	overflow: hidden;
+	.flex;
+}
+section.sliderCon .infoBox .picInfo a {
+	display: inline-block;
+	.flex;
+}
+section.sliderCon .infoBox .picInfo span.icon {
+	position: relative;
+	/*top: 11/64rem;*/
+	display: inline-block;
+	width: 58/64rem;
+	height: 30/64rem;
+	margin-right: 24/64rem;
+	background-color: rgba(76,134,198,1);
+	color: rgba(206,209,214,1);
+	text-align: center;
+	line-height: 30/64rem;
+	font-size: 20/64rem;
+	align-self: center;
+}
+section.sliderCon .infoBox .picInfo span {
+	color: rgba(76,134,198,1);
+	font-size: 24/64rem;
+}
+section.sliderCon .infoBox .picInfo span.desc {
+	position: relative;
+	/*top: 14/64rem;*/
+	display: inline-block;
+	max-width: 366/64rem;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	align-self: center;
+}
+section.sliderCon .infoBox .oBox {
+	height: 20/64rem;
+	float: right;
+	.flex;
+	margin-top: 16/64rem;
+}
+section.sliderCon .infoBox .oBox .o {
+	display: inline-block;
+	width: 12/64rem;
+	height: 12/64rem;
+	margin-right: 11/64rem;
+	background-color: rgba(156,156,157,1);
+	align-self: center;
+	border-radius: 50%;
+}
+section.sliderCon .infoBox .oBox .o:nth-child(3) {
+	margin-right: 0;
+}
+section.sliderCon .infoBox .oBox .o.select {
+	background-color: rgba(81,81,81,1);
+}
+section.sliderCon .slider {
+	position: relative;
+	left: 0px;
+	width: 30rem;
+	height: 100%;
+}
+section.sliderCon .slider .pic {
+	display: block;
+	float: left;
+	width: 10rem;
+	height: 100%;
+}
+section.sliderCon .slider .pic:nth-child(1) {
+	background-color: #000;
+}
+section.sliderCon .slider .pic:nth-child(2) {
+	background-color: green;
+}
+section.sliderCon .slider .pic:nth-child(3) {
+	background-color: purple;
+}
+section.newsCon {
+	width: 10rem;
+	padding: 0 24/64rem;
+	box-sizing: border-box;
+	overflow-y: scroll;
+}
+section.newsCon .newBox {
+	padding: 20/64rem 0;
+	box-sizing: border-box;
+	border-bottom: 2px solid rgba(230,230,230,1);
+}
+section.newsCon .newBox .l {
+	float: left;
+	width: 142/64rem;
+	height: 106/64rem;
+}
+section.newsCon .newBox .l img {
+	width: 100%;
+	height: 100%;
+}
+section.newsCon .newBox .r {
+	position: relative;
+	float: right;
+	width: 435/64rem;
+	height: 106/64rem;
+}
+section.newsCon .newBox .r .icon {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	font-size: 23/64rem;
+	color: rgba(198,198,198,1);
+
+}
+section.newsCon .newBox .r .title {
+	margin-top: 6/64rem;
+	font-size: 30/64rem;
+	color: #000;
+	overflow-x: visible;
+	text-overflow: ellipsis;
+	white-space: normal;
+}
+section.newsCon .newBox .r .desc {
+	margin-top: 18/64rem;
+	font-size: 24/64rem;
+	color: rgba(198,198,198,1);
+}
+.page {
+	position: absolute;
+}
+#page2 {
+	top: -100%;
+	width: 10rem;
+	height: 10rem;
+	bottom: 100%;
+	transition: .26s all ease;
+	background: #fff;
+}
+#page2 header {
+	position: relative;
+}
+#page2 ul {
+	width: 556/64rem;
+	box-sizing: border-box;
+	height: 72/64rem;
+	.flexBtween;
+}
+#page2 ul.headerUl {
+	padding: 0 20/64rem;
+}
+#page2 ul li.tab-method {
+	display: inline-block;
+ 	width: 108/64rem;
+ 	height: 72/64rem;
+ 	Flex:1;
+ 	.flex;
+ 	.flexCenter;
+ 	font-size: 26/64rem;
+}
+#page2 ul li.tab-method:nth-child(1) {
+	color: #aeaeae;
+	.flexLeft;
+}
+#page2 ul li.tab-method:nth-child(2) {
+	color: #c30015;
+	.flexRight;
+}
+#page2 .arrowUp {
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 84/64rem;
+	height: 72/64rem;
+	.flex;
+	.flexCenter;
+}
+#page2 .arrowUp img {
+	width: 37/64rem;
+	height: 21/64rem;
+	transform: rotate(180deg);                
+}
+#page2 section.user-tab {
+	width: 10rem;
+	box-sizing: border-box;
+	padding: 26/64rem 38/64rem;
+}
+#page2 section.user-tab ul {
+	display: block;
+	border-bottom: 1/64rem solid #d4d4d4;
+	.flex;
+}
+#page2 section.user-tab ul li {
+	display: inline-block;
+	width: 130/64rem;
+	height: 28/64rem;
+	border-right: 1/64rem solid #d4d4d4;
+	align-self: center;
+	.flexCenter;
+	font-size: 26/64rem; 
+}
+#page2 section.user-tab ul li.highlight {
+	color: #c30114;
+}
+#page2 section.user-tab ul li:nth-child(4) {
+	border-right: none;
+}
+#page2 .block {
+	width: 10rem;
+	height: 72/64rem;
+	background: #e6e6e6;
+	.flexLeft;
+	font-size: 26/64rem;
+	padding-left: 24/64rem;
+	box-sizing: border-box;
+	color: #999;
+	text-shadow: 0 1/64rem 0 #fff;
+}
+#page2 .block span {
+	align-self: center;
+}
+#page2 section.all-tab {
+	width: 10rem;
+	padding: 32/64rem 12/64rem 0;
+	.flex;
+	flex-wrap: wrap;
+	align-content: flex-start; 
+}
+#page2 section.all-tab .tab {
+	align-items: flex-start;
+	display: -webkit-flex;
+	width: 140/64rem;
+	height: 68/64rem;
+	margin: 0 6/64rem 18/64rem;
+	border: 1/64rem solid #c8c8c8;
+	font-size: 26/64rem;
+	color: #5a5a5a;
+	.flexCenter;
+	border-radius: 2/64rem;
+	transition: .2s all ease;
+}
