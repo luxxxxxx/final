@@ -30,9 +30,9 @@
 			<section id="main">
 				<section class="sliderCon">
 					<ul class="slider clearfix">
+					<!-- 	<li class="pic"><a href="http://hgtcgmslw.ml/uadrqdbtzs"><img src="http://dummyimage.com/600x400/00405d/FFF&text=新构存金团"></a></li>
 						<li class="pic"></li>
-						<li class="pic"></li>
-						<li class="pic"></li>
+						<li class="pic"></li> -->
 					</ul>
 					<div class="infoBox clearfix">
 						<div class="picInfo">
@@ -170,12 +170,7 @@
 <script type="text/javascript">
 // "/news?num=2"   news
 	(function () {
-		// ajax({
-		// 	url: "/sliders",
-		// 	method: "GET",
-		// 	success: sliderLoad;
-			
-		// });
+
 		on(window,'load',init);  //页面初始化
 
 		function init () {
@@ -192,35 +187,38 @@
 			on($$('.arrowUp'),'touchend',function () {
 				$$('#page2').style.top = '-100%';
 			})
-			ajax ({
-				url: "/sliders",
-  				method: "GET"
-  				success : sliderLoad();
-			})
 			//载入轮播
-			// sliderLoad();
-
+			ajax ({
+				'url': "/sliders",
+  				'success' : sliderLoad
+			})
+			
 			//载入新闻
 			ajax ({
-				url : "/news?num=2",
-				'success' : newsLoad()
+				'url' : "/news?num=2",
+				'success' : newsLoad
 			});
-
-
 		}
 
 		function sliderLoad (json) {   //轮播
-			console.log(json)
-			var length = 3;
+			var data = JSON.parse(json);
+			var slider = $$('.slider');
+			var length = data.length;
 			$$('.slider').style.width = length * 100 + '%';
-			for (var i = 0; i < length; i++) { //自动生成li
+			var innerIMG = '';
+			for (var i = 0; i < length; i++) {
+				var oLiImg = '<li class="pic"><a href="'+data[i].link+'"><img src="'+data[i].imgURL+'"></a></li>';
+				innerIMG += oLiImg;
+			}
+			slider.innerHTML = innerIMG;
+			for (var i = 0; i < length; i++) { //自动生成小圆圈li 
 				var oLi = document.createElement('li');
 				oLi.className = 'o';
 				$$('.oBox').appendChild(oLi);
 			}
 			addClass($$('.o')[0],'select'); //给第一个li增加默认样式
-			var slider = $$('.slider'),
-				width = $$('.sliderCon').offsetWidth,
+			$$('.o')[length - 1].style.marginRight = 0; //给最后一个o 的marginright 设为0
+				var width = $$('.sliderCon').offsetWidth,
 				nowIndex = 0,
 				aO = $$('.o');
 				oLength = aO.length;
@@ -233,29 +231,30 @@
 						move(slider,{left: -width*this.index + 'px'},300,'easeOut')
 					}
 				}
-				on(slider,'touchstart',function(e) {
-					this.x = e.touches[0].clientX;
-					console.log(this.x);
-					if (this.timer) {
-						clearInterval(this.timer);
-					}
-					on(this,'touchend',function(){
-							console.log('end')
-							this.timer = setInterval(function(){slide()},3000)
-					})
-				})
-				on(slider,'touchmove',function(e) {
-					var x_ = this.x;
-				})
+				// on(slider,'touchstart',function(e) {
+				// 	this.x = e.touches[0].clientX;
+				// 	console.log(this.x);
+				// 	if (this.timer) {
+				// 		clearInterval(this.timer);
+				// 	}
+				// 	on(this,'touchend',function(){
+				// 			console.log('end')
+				// 			this.timer = setInterval(function(){slide()},3000)
+				// 	})
+				// })
+				// on(slider,'touchmove',function(e) {
+				// 	var x_ = this.x;
+				// })
 				
 			slider.timer = setInterval(function(){slide()},3000);
-
+			$$('.picInfo .desc').innerHTML = data[nowIndex].title;  //初始化title
 			function slide () {
 				if (nowIndex === length - 1) {
 					nowIndex = 0;
 				}else {
 					nowIndex ++;
 				}
+				$$('.picInfo .desc').innerHTML = data[nowIndex].title;
 				removeSiblingsClass(aO,'select');
 				addClass(aO[nowIndex],'select');
 				move(slider,{left: -width*nowIndex + 'px'},300,'easeOut')
@@ -272,12 +271,13 @@
 
 
 
-		function newsLoad (data) {
-			console.log(data);
-			var l = 4;
-
+		function newsLoad (json) {
+			console.log(json);
+			var data = JSON.parse(json);
+			var length = data.length;
 		}
 
 
 	})()
+
 </script>

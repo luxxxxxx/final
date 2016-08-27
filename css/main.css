@@ -144,9 +144,6 @@ section.sliderCon .infoBox .oBox .o {
   align-self: center;
   border-radius: 50%;
 }
-section.sliderCon .infoBox .oBox .o:nth-child(3) {
-  margin-right: 0;
-}
 section.sliderCon .infoBox .oBox .o.select {
   background-color: #515151;
 }
@@ -162,14 +159,14 @@ section.sliderCon .slider .pic {
   width: 10rem;
   height: 100%;
 }
-section.sliderCon .slider .pic:nth-child(1) {
-  background-color: #000;
+section.sliderCon .slider .pic a {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
-section.sliderCon .slider .pic:nth-child(2) {
-  background-color: green;
-}
-section.sliderCon .slider .pic:nth-child(3) {
-  background-color: purple;
+section.sliderCon .slider .pic a img {
+  width: 100%;
+  height: 100%;
 }
 section.newsCon {
   width: 10rem;
